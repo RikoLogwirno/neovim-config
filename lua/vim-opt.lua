@@ -20,7 +20,7 @@ vim.o.shiftwidth = 2
 vim.opt.clipboard = "unnamedplus"
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then 
+if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",
@@ -28,13 +28,31 @@ if not vim.loop.fs_stat(lazypath) then
 		"https://github.com/folke/lazy.nvim.git",
 		"--branch=stable",
 		lazypath,
-})
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Auto-close standard brackets and quotes, then move cursor left
+vim.keymap.set("i", "(", "()<Left>")
+vim.keymap.set("i", "[", "[]<Left>")
+vim.keymap.set("i", "{", "{}<Left>")
+vim.keymap.set("i", '"', '""<Left>')
+vim.keymap.set("i", "'", "''<Left>")
+
+-- Intelligent multi-line behavior for curly braces
+vim.keymap.set("i", "{<CR>", "{<CR>}<Esc>O")
+
+-- Normal Mode: Tekan Ctrl+Space untuk masuk Visual Mode dan langsung pilih node luar (parent)
+vim.keymap.set("n", "<C-space>", "van", { remap = true, desc = "TS: Mulai seleksi inkremental" })
+
+-- Visual Mode: Tekan Ctrl+Space untuk memperluas seleksi ke luar (parent node)
+vim.keymap.set("x", "<C-space>", "an", { remap = true, desc = "TS: Perluas seleksi" })
+
+-- Visual Mode: Tekan Backspace untuk mengecilkan seleksi ke dalam (child node)
+vim.keymap.set("x", "<BS>", "in", { remap = true, desc = "TS: Kecilkan seleksi" })
 
 vim.api.nvim_create_autocmd("BufReadPost", {
-	callback = function() 
-		require('mini.map').open()
+	callback = function()
+		require("mini.map").open()
 	end,
 })
