@@ -1,0 +1,12 @@
+syntax enable
+set number
+set relativenumber
+set cursorline
+set termguicolors
+highlight LineNr guifg=#6A98BC guibg=NONE
+
+" colorscheme catppuccin
+highlight Normal guibg=NONE ctermbg=NONE
+highlight NonText guibg=NONE ctermbg=NONE
+highlight SignColumn guibg=NONE ctermbg=NONE
+highlight EndOfBuffer guibg=NONE ctermbg=NONE
