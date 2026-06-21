@@ -1,6 +1,5 @@
 return {
 	"romus204/tree-sitter-manager.nvim",
-	build = ":TSUpdate",
 	dependencies = { "nvim-lua/plenary.nvim" },
 	cmd = { "TSManager" },
 	opts = {

@@ -23,6 +23,7 @@ return {
 			local system_servers = {
 				"phpantom_lsp",
 				"golangci_lint_ls",
+				"golnangci_lint"
 			}
 
 			-- Gabungkan semua untuk otomatisasi instalasi alat tambahan jika ada

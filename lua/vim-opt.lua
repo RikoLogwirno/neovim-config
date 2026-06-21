@@ -56,3 +56,17 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		require("mini.map").open()
 	end,
 })
+
+vim.api.nvim_set_hl(0, "BlinkCmpGhostText", {
+    fg = "#7f849c",
+})
+
+-- Pastikan gopls terkonfigurasi dengan benar di Neovim 0.12
+vim.lsp.config('gopls', {
+  cmd = { 'gopls' },
+  filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+  root_markers = { 'go.work', 'go.mod', '.git' },
+})
+
+-- Aktifkan secara eksplisit agar gopls otomatis melampirkan diri ke file Go
+vim.lsp.enable('gopls')
